@@ -1,0 +1,17 @@
+{
+  "fichier": "facture_22.pdf",
+  "fournisseur": "Guyon",
+  "numero": "FA-2025-9201",
+  "date": "2025-05-15",
+  "montant_ht": 832.88,
+  "taux": 20,
+  "tva": 166.58,
+  "montant_ttc": 999.46,
+  "incoherent": false,
+  "doublon_de": null,
+  "ht_txt": "832,88",
+  "tva_txt": "166,58",
+  "ttc_txt": "999,46",
+  "date_txt": "2025-05-15",
+  "modele": 0
+}

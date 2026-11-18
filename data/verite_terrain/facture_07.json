@@ -1,0 +1,17 @@
+{
+  "fichier": "facture_07.pdf",
+  "fournisseur": "Dijoux SA",
+  "numero": "FA-2025-1711",
+  "date": "2025-05-16",
+  "montant_ht": 4245.1,
+  "taux": 5.5,
+  "tva": 233.48,
+  "montant_ttc": 4478.58,
+  "incoherent": false,
+  "doublon_de": null,
+  "ht_txt": "4.245,10",
+  "tva_txt": "233,48",
+  "ttc_txt": "4.478,58",
+  "date_txt": "16 mai 2025",
+  "modele": 2
+}

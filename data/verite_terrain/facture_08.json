@@ -1,0 +1,17 @@
+{
+  "fichier": "facture_08.pdf",
+  "fournisseur": "Weiss",
+  "numero": "FA-2025-5803",
+  "date": "2025-02-10",
+  "montant_ht": 667.89,
+  "taux": 10,
+  "tva": 66.79,
+  "montant_ttc": 734.68,
+  "incoherent": false,
+  "doublon_de": null,
+  "ht_txt": "667,89",
+  "tva_txt": "66,79",
+  "ttc_txt": "734,68",
+  "date_txt": "2025-02-10",
+  "modele": 1
+}

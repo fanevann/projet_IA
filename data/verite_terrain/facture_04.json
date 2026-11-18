@@ -1,0 +1,17 @@
+{
+  "fichier": "facture_04.pdf",
+  "fournisseur": "Foucher",
+  "numero": "FA-2025-7873",
+  "date": "2025-10-07",
+  "montant_ht": 1034.25,
+  "taux": 5.5,
+  "tva": 56.88,
+  "montant_ttc": 1091.13,
+  "incoherent": false,
+  "doublon_de": null,
+  "ht_txt": "1 034,25",
+  "tva_txt": "56,88",
+  "ttc_txt": "1 091,13",
+  "date_txt": "7 octobre 2025",
+  "modele": 2
+}

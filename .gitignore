@@ -1,0 +1,7 @@
+venv/
+__pycache__/
+*.pyc
+data/factures_scan/
+data/factures.db
+rapport/captures/
+.env

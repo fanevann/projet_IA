@@ -1,0 +1,17 @@
+{
+  "fichier": "facture_21.pdf",
+  "fournisseur": "Clerc",
+  "numero": "FA-2025-6573",
+  "date": "2025-05-17",
+  "montant_ht": 3424.47,
+  "taux": 5.5,
+  "tva": 188.35,
+  "montant_ttc": 3612.82,
+  "incoherent": false,
+  "doublon_de": null,
+  "ht_txt": "3 424,47",
+  "tva_txt": "188,35",
+  "ttc_txt": "3 612,82",
+  "date_txt": "17 mai 2025",
+  "modele": 1
+}

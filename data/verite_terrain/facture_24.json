@@ -1,0 +1,17 @@
+{
+  "fichier": "facture_24.pdf",
+  "fournisseur": "Pinto",
+  "numero": "FA-2025-9689",
+  "date": "2025-10-04",
+  "montant_ht": 1900.87,
+  "taux": 20,
+  "tva": 380.17,
+  "montant_ttc": 2281.04,
+  "incoherent": false,
+  "doublon_de": null,
+  "ht_txt": "1 900,87",
+  "tva_txt": "380,17",
+  "ttc_txt": "2 281,04",
+  "date_txt": "2025-10-04",
+  "modele": 1
+}

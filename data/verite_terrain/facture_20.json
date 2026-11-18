@@ -1,0 +1,17 @@
+{
+  "fichier": "facture_20.pdf",
+  "fournisseur": "Barthelemy",
+  "numero": "FA-2025-1188",
+  "date": "2025-10-11",
+  "montant_ht": 4980.8,
+  "taux": 5.5,
+  "tva": 273.94,
+  "montant_ttc": 5279.74,
+  "incoherent": true,
+  "doublon_de": null,
+  "ht_txt": "4.980,80",
+  "tva_txt": "273,94",
+  "ttc_txt": "5.279,74",
+  "date_txt": "2025-10-11",
+  "modele": 0
+}

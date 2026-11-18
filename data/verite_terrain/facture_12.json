@@ -1,0 +1,17 @@
+{
+  "fichier": "facture_12.pdf",
+  "fournisseur": "Techer Chartier S.A.S.",
+  "numero": "FA-2025-3803",
+  "date": "2025-02-06",
+  "montant_ht": 3524.01,
+  "taux": 5.5,
+  "tva": 193.82,
+  "montant_ttc": 3817.83,
+  "incoherent": true,
+  "doublon_de": null,
+  "ht_txt": "3.524,01",
+  "tva_txt": "193,82",
+  "ttc_txt": "3.817,83",
+  "date_txt": "2025-02-06",
+  "modele": 0
+}

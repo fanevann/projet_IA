@@ -1,0 +1,17 @@
+{
+  "fichier": "facture_17.pdf",
+  "fournisseur": "Durand Leclerc et Fils",
+  "numero": "FA-2025-8019",
+  "date": "2025-05-15",
+  "montant_ht": 3737.7,
+  "taux": 5.5,
+  "tva": 205.57,
+  "montant_ttc": 3943.27,
+  "incoherent": false,
+  "doublon_de": null,
+  "ht_txt": "3.737,70",
+  "tva_txt": "205,57",
+  "ttc_txt": "3.943,27",
+  "date_txt": "15 mai 2025",
+  "modele": 1
+}

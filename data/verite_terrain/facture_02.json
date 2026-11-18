@@ -1,0 +1,17 @@
+{
+  "fichier": "facture_02.pdf",
+  "fournisseur": "Delannoy",
+  "numero": "FA-2025-2424",
+  "date": "2025-10-07",
+  "montant_ht": 557.35,
+  "taux": 5.5,
+  "tva": 30.65,
+  "montant_ttc": 588.0,
+  "incoherent": false,
+  "doublon_de": null,
+  "ht_txt": "557,35",
+  "tva_txt": "30,65",
+  "ttc_txt": "588,00",
+  "date_txt": "7 octobre 2025",
+  "modele": 0
+}

@@ -1,0 +1,17 @@
+{
+  "fichier": "facture_09.pdf",
+  "fournisseur": "Pineau",
+  "numero": "FA-2025-1750",
+  "date": "2025-02-05",
+  "montant_ht": 2907.89,
+  "taux": 5.5,
+  "tva": 159.93,
+  "montant_ttc": 3067.82,
+  "incoherent": false,
+  "doublon_de": null,
+  "ht_txt": "2.907,89",
+  "tva_txt": "159,93",
+  "ttc_txt": "3.067,82",
+  "date_txt": "05/02/2025",
+  "modele": 1
+}

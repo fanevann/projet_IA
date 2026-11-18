@@ -1,0 +1,17 @@
+{
+  "fichier": "facture_03.pdf",
+  "fournisseur": "Navarro Dupré S.A.S.",
+  "numero": "FA-2025-9279",
+  "date": "2025-04-30",
+  "montant_ht": 197.5,
+  "taux": 20,
+  "tva": 39.5,
+  "montant_ttc": 237.0,
+  "incoherent": false,
+  "doublon_de": null,
+  "ht_txt": "197,50",
+  "tva_txt": "39,50",
+  "ttc_txt": "237,00",
+  "date_txt": "30/04/2025",
+  "modele": 2
+}

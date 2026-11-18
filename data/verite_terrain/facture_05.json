@@ -1,0 +1,17 @@
+{
+  "fichier": "facture_05.pdf",
+  "fournisseur": "Martins S.A.S.",
+  "numero": "FA-2025-6574",
+  "date": "2025-08-05",
+  "montant_ht": 1427.04,
+  "taux": 20,
+  "tva": 285.41,
+  "montant_ttc": 1722.45,
+  "incoherent": true,
+  "doublon_de": null,
+  "ht_txt": "1427.04",
+  "tva_txt": "285.41",
+  "ttc_txt": "1722.45",
+  "date_txt": "05/08/2025",
+  "modele": 0
+}

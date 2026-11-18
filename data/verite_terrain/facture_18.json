@@ -1,0 +1,17 @@
+{
+  "fichier": "facture_18.pdf",
+  "fournisseur": "Hardy Godard SA",
+  "numero": "FA-2025-9085",
+  "date": "2025-09-18",
+  "montant_ht": 1135.64,
+  "taux": 20,
+  "tva": 227.13,
+  "montant_ttc": 1362.77,
+  "incoherent": false,
+  "doublon_de": null,
+  "ht_txt": "1 135,64",
+  "tva_txt": "227,13",
+  "ttc_txt": "1 362,77",
+  "date_txt": "18/09/2025",
+  "modele": 0
+}

@@ -1,0 +1,17 @@
+{
+  "fichier": "facture_11.pdf",
+  "fournisseur": "Barbe",
+  "numero": "FA-2025-6820",
+  "date": "2025-07-09",
+  "montant_ht": 4178.85,
+  "taux": 20,
+  "tva": 835.77,
+  "montant_ttc": 5014.62,
+  "incoherent": false,
+  "doublon_de": null,
+  "ht_txt": "4 178,85",
+  "tva_txt": "835,77",
+  "ttc_txt": "5 014,62",
+  "date_txt": "2025-07-09",
+  "modele": 1
+}

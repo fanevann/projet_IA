@@ -1,0 +1,17 @@
+{
+  "fichier": "facture_19.pdf",
+  "fournisseur": "Maillet SARL",
+  "numero": "FA-2025-2040",
+  "date": "2025-08-05",
+  "montant_ht": 806.56,
+  "taux": 20,
+  "tva": 161.31,
+  "montant_ttc": 967.87,
+  "incoherent": false,
+  "doublon_de": null,
+  "ht_txt": "806.56",
+  "tva_txt": "161.31",
+  "ttc_txt": "967.87",
+  "date_txt": "5 août 2025",
+  "modele": 2
+}

@@ -1,0 +1,17 @@
+{
+  "fichier": "facture_16.pdf",
+  "fournisseur": "Sauvage",
+  "numero": "FA-2025-3340",
+  "date": "2025-08-23",
+  "montant_ht": 4429.18,
+  "taux": 5.5,
+  "tva": 243.6,
+  "montant_ttc": 4672.78,
+  "incoherent": false,
+  "doublon_de": null,
+  "ht_txt": "4429.18",
+  "tva_txt": "243.60",
+  "ttc_txt": "4672.78",
+  "date_txt": "23/08/2025",
+  "modele": 0
+}

@@ -1,0 +1,17 @@
+{
+  "fichier": "facture_10.pdf",
+  "fournisseur": "Diallo",
+  "numero": "FA-2025-7227",
+  "date": "2025-02-21",
+  "montant_ht": 4926.85,
+  "taux": 20,
+  "tva": 985.37,
+  "montant_ttc": 5912.22,
+  "incoherent": false,
+  "doublon_de": null,
+  "ht_txt": "4926.85",
+  "tva_txt": "985.37",
+  "ttc_txt": "5912.22",
+  "date_txt": "21 février 2025",
+  "modele": 2
+}

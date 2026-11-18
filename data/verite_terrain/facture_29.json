@@ -1,0 +1,17 @@
+{
+  "fichier": "facture_29.pdf",
+  "fournisseur": "Chartier",
+  "numero": "FA-2025-4598",
+  "date": "2025-05-19",
+  "montant_ht": 858.84,
+  "taux": 10,
+  "tva": 85.88,
+  "montant_ttc": 944.72,
+  "incoherent": false,
+  "doublon_de": "facture_13.pdf",
+  "ht_txt": "858.84",
+  "tva_txt": "85.88",
+  "ttc_txt": "944.72",
+  "date_txt": "19/05/2025",
+  "modele": 2
+}

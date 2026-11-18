@@ -1,0 +1,17 @@
+{
+  "fichier": "facture_01.pdf",
+  "fournisseur": "Philippe",
+  "numero": "FA-2025-5012",
+  "date": "2025-05-21",
+  "montant_ht": 3215.16,
+  "taux": 20,
+  "tva": 643.03,
+  "montant_ttc": 3858.19,
+  "incoherent": false,
+  "doublon_de": null,
+  "ht_txt": "3 215,16",
+  "tva_txt": "643,03",
+  "ttc_txt": "3 858,19",
+  "date_txt": "21/05/2025",
+  "modele": 2
+}

@@ -1,0 +1,17 @@
+{
+  "fichier": "facture_23.pdf",
+  "fournisseur": "Pierre Grenier S.A.",
+  "numero": "FA-2025-9317",
+  "date": "2025-11-24",
+  "montant_ht": 4359.07,
+  "taux": 10,
+  "tva": 435.91,
+  "montant_ttc": 4794.98,
+  "incoherent": false,
+  "doublon_de": null,
+  "ht_txt": "4.359,07",
+  "tva_txt": "435,91",
+  "ttc_txt": "4.794,98",
+  "date_txt": "24/11/2025",
+  "modele": 0
+}

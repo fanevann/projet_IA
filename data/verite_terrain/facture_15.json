@@ -1,0 +1,17 @@
+{
+  "fichier": "facture_15.pdf",
+  "fournisseur": "Grondin",
+  "numero": "FA-2025-4483",
+  "date": "2025-06-11",
+  "montant_ht": 4570.02,
+  "taux": 5.5,
+  "tva": 251.35,
+  "montant_ttc": 4821.37,
+  "incoherent": false,
+  "doublon_de": null,
+  "ht_txt": "4.570,02",
+  "tva_txt": "251,35",
+  "ttc_txt": "4.821,37",
+  "date_txt": "11 juin 2025",
+  "modele": 1
+}

@@ -1,0 +1,17 @@
+{
+  "fichier": "facture_06.pdf",
+  "fournisseur": "Regnier",
+  "numero": "FA-2025-2519",
+  "date": "2025-02-22",
+  "montant_ht": 4788.2,
+  "taux": 10,
+  "tva": 478.82,
+  "montant_ttc": 5267.02,
+  "incoherent": false,
+  "doublon_de": null,
+  "ht_txt": "4788.20",
+  "tva_txt": "478.82",
+  "ttc_txt": "5267.02",
+  "date_txt": "22/02/2025",
+  "modele": 1
+}
