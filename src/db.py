@@ -32,12 +32,14 @@ def verifier(champs, c):
     if None not in (ht, tva, ttc) and abs(ht + tva - ttc) > 0.02:
         anomalies.append("incoherence_montants")
 
-    d = c.execute(
-        "SELECT id FROM factures WHERE numero=? AND fournisseur=? AND montant_ttc=?",
-        (champs.get("numero"), champs.get("fournisseur"), ttc),
-    ).fetchone()
-    if d:
-        anomalies.append(f"doublon_de:{d['id']}")
+    # Doublon: numero + fournisseur (tsy miraharaha lehibe/kely), tsy mijery TTC
+    if champs.get("numero") and champs.get("fournisseur"):
+        d = c.execute(
+            "SELECT id FROM factures WHERE numero=? AND LOWER(fournisseur)=LOWER(?)",
+            (champs.get("numero"), champs.get("fournisseur")),
+        ).fetchone()
+        if d:
+            anomalies.append(f"doublon_de:{d['id']}")
 
     if any(a.startswith("doublon") for a in anomalies):
         statut = "doublon"
