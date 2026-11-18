@@ -13,14 +13,18 @@ os.makedirs(DOSSIER_DEPOTS, exist_ok=True)
 
 st.set_page_config(page_title="Factures IA", page_icon="🧾", layout="wide")
 
+# ================= Etat de session =================
+st.session_state.setdefault("lang", "fr")
+st.session_state.setdefault("dark", False)
+st.session_state.setdefault("page", "dash")
+lang = st.session_state["lang"]
+
 # ================= Traductions =================
 TR = {
     "fr": {
         "app": "Factures IA", "tagline": "OCR · Extraction · Validation",
         "nav_dash": "📊 Tableau de bord", "nav_valid": "✍️ Validation",
-        "nav_depot": "📤 Dépôt", "lang": "Langue", "theme": "Thème",
-        "light": "☀️ Clair", "dark": "🌙 Sombre",
-        "pending": "En attente de validation",
+        "nav_depot": "📤 Dépôt", "compose": "Nouveau dépôt", "theme": "Mode sombre",
         "dash_title": "Tableau de bord",
         "empty": "Aucune facture en base. Déposez une facture dans « Dépôt ».",
         "k_total": "Factures traitées", "k_valid": "Valides",
@@ -32,7 +36,7 @@ TR = {
         "s_valide": "🟢 Valide", "s_a_verifier": "🟠 À vérifier",
         "s_doublon": "🔴 Doublon", "s_rejete": "⚫ Rejeté",
         "valid_title": "Validation humaine",
-        "all_done": "🎉 Tout est à jour : aucune facture en attente.",
+        "all_done": " Tout est à jour : aucune facture en attente.",
         "n_pending": "{n} facture(s) en attente",
         "orig": "Document original", "no_preview": "Aperçu indisponible.",
         "extracted": "Données extraites", "supplier": "Fournisseur",
@@ -48,17 +52,15 @@ TR = {
         "a_missing": "Champ non détecté : {n}",
         "depot_title": "Déposer une facture",
         "depot_cap": "Formats acceptés : PDF, PNG, JPG. Traitement automatique.",
-        "drop": "Glissez une facture ici", "run": "🚀 Lancer le traitement",
+        "drop": "Glissez une facture ici", "run": " Lancer le traitement",
         "spin": "OCR et extraction en cours...",
         "saved": "Facture enregistrée automatiquement.",
         "queued": "Facture envoyée dans la file de validation.",
     },
     "en": {
         "app": "Invoices AI", "tagline": "OCR · Extraction · Review",
-        "nav_dash": "📊 Dashboard", "nav_valid": "✍️ Review",
-        "nav_depot": "📤 Upload", "lang": "Language", "theme": "Theme",
-        "light": "☀️ Light", "dark": "🌙 Dark",
-        "pending": "Awaiting review",
+        "nav_dash": "Dashboard", "nav_valid": " Review",
+        "nav_depot": "Upload", "compose": "New upload", "theme": "Dark mode",
         "dash_title": "Dashboard",
         "empty": "No invoice in the database. Upload one in « Upload ».",
         "k_total": "Processed invoices", "k_valid": "Valid",
@@ -70,7 +72,7 @@ TR = {
         "s_valide": "🟢 Valid", "s_a_verifier": "🟠 To check",
         "s_doublon": "🔴 Duplicate", "s_rejete": "⚫ Rejected",
         "valid_title": "Human review",
-        "all_done": "🎉 All done: no invoice waiting.",
+        "all_done": " All done: no invoice waiting.",
         "n_pending": "{n} invoice(s) waiting",
         "orig": "Original document", "no_preview": "Preview unavailable.",
         "extracted": "Extracted data", "supplier": "Supplier",
@@ -78,7 +80,7 @@ TR = {
         "ht": "Net amount (€)", "tva": "VAT (€)", "ttc": "Gross amount (€)",
         "gap": "Net + VAT = {s:.2f} € · gap of {e:+.2f} € with gross amount",
         "coherent": "Amounts are consistent ✓",
-        "btn_ok": "✅ Approve", "btn_ko": "🗑️ Reject",
+        "btn_ok": " Approve", "btn_ko": " Reject",
         "help_ok": "Disabled while amounts are inconsistent",
         "validated": "{f} approved", "rejected": "{f} rejected",
         "a_incoh": "Inconsistent amounts: net + VAT ≠ gross",
@@ -86,16 +88,12 @@ TR = {
         "a_missing": "Field not detected: {n}",
         "depot_title": "Upload an invoice",
         "depot_cap": "Accepted formats: PDF, PNG, JPG. Automatic processing.",
-        "drop": "Drop an invoice here", "run": "🚀 Start processing",
+        "drop": "Drop an invoice here", "run": " Start processing",
         "spin": "OCR and extraction in progress...",
         "saved": "Invoice saved automatically.",
         "queued": "Invoice sent to the review queue.",
     },
 }
-
-# ================= Sidebar : langue + thème =================
-st.sidebar.markdown("## 🧾 " + TR[st.session_state.get("lang", "fr")]["app"])
-lang = st.session_state.get("lang", "fr")
 
 
 def t(key, **kw):
@@ -158,6 +156,10 @@ def flash(msg, icone="✅"):
     st.session_state["flash"] = (msg, icone)
 
 
+def aller(p):
+    st.session_state["page"] = p
+
+
 if "flash" in st.session_state:
     msg, icone = st.session_state.pop("flash")
     st.toast(msg, icon=icone)
@@ -165,64 +167,105 @@ if "flash" in st.session_state:
 df = charger()
 nb_attente = int(df.statut.isin(["a_verifier", "doublon"]).sum()) if not df.empty else 0
 
-# ================= Sidebar (navigation + réglages) =================
-st.sidebar.caption(t("tagline"))
-st.sidebar.divider()
-
-page = st.sidebar.radio(
-    "nav", ["dash", "valid", "depot"],
-    format_func=lambda k: {
-        "dash": t("nav_dash"),
-        "valid": f"{t('nav_valid')} ({nb_attente})" if nb_attente else t("nav_valid"),
-        "depot": t("nav_depot"),
-    }[k],
-    label_visibility="collapsed",
-)
-
-st.sidebar.divider()
-if nb_attente:
-    st.sidebar.warning(f"⏳ {t('pending')} : **{nb_attente}**")
-
-st.sidebar.selectbox(
-    t("lang"), ["fr", "en"], key="lang",
-    format_func=lambda x: {"fr": "🇫🇷 Français", "en": "🇬🇧 English"}[x],
-)
-st.sidebar.radio(
-    t("theme"), ["light", "dark"], key="theme", horizontal=True,
-    format_func=lambda x: t(x),
-)
-st.sidebar.caption("v1.0 · M1 · Tesseract + OpenCV + SQLite")
-
-# Si la langue a changé, on relance pour appliquer partout
-if st.session_state.get("lang", "fr") != lang:
-    st.rerun()
-
-# ================= CSS thème =================
-if st.session_state.get("theme", "light") == "dark":
-    bg, bg2, fg, field, border = "#0e1117", "#161b22", "#fafafa", "#1c2128", "#30363d"
+# ================= CSS : thème + style Gmail + responsive =================
+if st.session_state["dark"]:
+    bg, bg2, fg, field, border, accent = "#0e1117", "#161b22", "#fafafa", "#1c2128", "#30363d", "#1f3a5f"
 else:
-    bg, bg2, fg, field, border = "#ffffff", "#f3f5f9", "#1f2430", "#ffffff", "#d5d9e2"
+    bg, bg2, fg, field, border, accent = "#ffffff", "#f6f8fc", "#1f2430", "#ffffff", "#d5d9e2", "#d3e3fd"
 
 st.markdown(f"""
 <style>
 .stApp, [data-testid="stHeader"] {{ background-color:{bg}; color:{fg}; }}
-[data-testid="stSidebar"] {{ background-color:{bg2}; border-right:1px solid {border}; }}
-.stApp h1,.stApp h2,.stApp h3,.stApp p,.stApp label,.stApp span,
-.stApp li,[data-testid="stMetricValue"],[data-testid="stMetricLabel"],
+[data-testid="stSidebar"] {{ background-color:{bg2}; border-right:none; }}
+.stApp h1,.stApp h2,.stApp h3,.stApp label,
+.stApp [data-testid="stMarkdownContainer"] p,
+.stApp [data-testid="stMarkdownContainer"] li,
+[data-testid="stMetricValue"],[data-testid="stMetricLabel"],
 [data-testid="stCaptionContainer"] {{ color:{fg} !important; }}
 input, textarea, [data-baseweb="select"] > div {{
   background-color:{field} !important; color:{fg} !important;
   border-color:{border} !important; }}
+[data-testid="stFileUploaderDropzone"] {{ background:{bg2}; border:1px dashed {border}; }}
 [data-testid="stMetric"] {{ background:{bg2}; border:1px solid {border};
   border-radius:12px; padding:14px 16px; }}
-[data-testid="stSidebar"] [role="radiogroup"] label {{
-  padding:8px 12px; border-radius:10px; }}
-[data-testid="stSidebar"] [role="radiogroup"] label:hover {{ background:{border}55; }}
-button[kind="primary"] {{ border-radius:10px; }}
+
+/* Boutons principaux (zone centrale) */
+.stApp button[kind="primary"] p,
+.stApp [data-testid="stBaseButton-primary"] p {{ color:#fff !important; }}
+button[kind="primary"], [data-testid="stBaseButton-primary"] {{ border-radius:10px; }}
+
+/* ---- Sidebar style Gmail ---- */
+[data-testid="stSidebar"] button,
+[data-testid="stSidebar"] [data-testid="stBaseButton-secondary"] {{
+  width:100%; justify-content:flex-start; text-align:left;
+  border:none; border-radius:0 28px 28px 0; padding:10px 18px;
+  background:transparent; box-shadow:none; }}
+[data-testid="stSidebar"] button p {{ color:{fg} !important; font-weight:500; }}
+[data-testid="stSidebar"] button:hover {{ background:{border}88; }}
+[data-testid="stSidebar"] button[kind="primary"],
+[data-testid="stSidebar"] [data-testid="stBaseButton-primary"] {{
+  background:{accent}; }}
+[data-testid="stSidebar"] button[kind="primary"] p,
+[data-testid="stSidebar"] [data-testid="stBaseButton-primary"] p {{
+  color:{fg} !important; font-weight:700; }}
+
+/* ---- Barre du haut : reste sur une ligne ---- */
+div[data-testid="stHorizontalBlock"]:has(.topbar-marker) {{
+  flex-wrap:nowrap !important; align-items:center;
+  border-bottom:1px solid {border}; padding-bottom:6px; margin-bottom:12px; }}
+div[data-testid="stHorizontalBlock"]:has(.topbar-marker) > div {{ min-width:0 !important; }}
+.topbar-title {{ font-weight:700; font-size:1.05rem; white-space:nowrap;
+  overflow:hidden; text-overflow:ellipsis; color:{fg}; }}
+
+/* ---- Responsive ---- */
+img {{ max-width:100%; height:auto; }}
+@media (max-width: 768px) {{
+  .block-container {{ padding:1rem 0.8rem 3rem 0.8rem !important; }}
+  h1, h2 {{ font-size:1.35rem !important; }}
+  [data-testid="stMetric"] {{ padding:10px 12px; }}
+  [data-testid="stMetricValue"] {{ font-size:1.4rem !important; }}
+  .topbar-title {{ font-size:0.95rem; }}
+}}
 </style>
 """, unsafe_allow_html=True)
 
-# ================= Page 1 : Dashboard =================
+# ================= Sidebar (style Gmail) =================
+st.sidebar.markdown(f"### 🧾 {t('app')}")
+st.sidebar.caption(t("tagline"))
+
+st.sidebar.button("➕  " + t("compose"), key="compose",
+                  on_click=aller, args=("depot",), type="primary")
+st.sidebar.write("")
+
+items = [
+    ("dash", t("nav_dash"), 0),
+    ("valid", t("nav_valid"), nb_attente),
+    ("depot", t("nav_depot"), 0),
+]
+for cle, label, badge in items:
+    texte = f"{label}   ({badge})" if badge else label
+    st.sidebar.button(
+        texte, key=f"nav_{cle}", on_click=aller, args=(cle,),
+        type="primary" if st.session_state["page"] == cle else "secondary",
+    )
+
+st.sidebar.divider()
+st.sidebar.caption("v1.0 · M1 · Tesseract + OpenCV + SQLite")
+
+page = st.session_state["page"]
+
+# ================= Barre du haut : langue + thème à droite =================
+c_titre, c_lang, c_theme = st.columns([5, 2.4, 1.6], vertical_alignment="center")
+c_titre.markdown(
+    f"<span class='topbar-marker'></span><div class='topbar-title'>🧾 {t('app')}</div>",
+    unsafe_allow_html=True,
+)
+c_lang.radio("lang", ["fr", "en"], key="lang", horizontal=True,
+             label_visibility="collapsed",
+             format_func=lambda x: {"fr": "🇫🇷 FR", "en": "🇬🇧 EN"}[x])
+c_theme.toggle("🌙", key="dark", help=t("theme"))
+
+# ================= Page 1 : Tableau de bord =================
 if page == "dash":
     st.header(t("dash_title"))
     if df.empty:
@@ -351,3 +394,6 @@ else:
         a, b, c = st.columns(3)
         a.metric("HT", f"{res['montant_ht'] or 0:.2f} €")
         b.metric("TVA", f"{res['tva'] or 0:.2f} €")
+        c.metric("TTC", f"{res['montant_ttc'] or 0:.2f} €")
+        st.write(f"**{t('supplier')} :** {res['fournisseur']}  \n"
+                 f"**N° :** {res['numero']}  \n**Date :** {res['date']}")

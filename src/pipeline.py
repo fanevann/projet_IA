@@ -8,7 +8,8 @@ def _coherent(ch):
     return None not in (ht, tva, ttc) and abs(ht + tva - ttc) <= 0.02
 
 
-def traiter(chemin):
+def traiter(chemin, nom=None):
+    nom = nom or os.path.basename(chemin)
     est_pdf = chemin.lower().endswith(".pdf")
     # PDF natif: tsy misy prétraitement; sary scan: misy prétraitement
     champs = extraire_champs(lire_texte(chemin, pretraitement=not est_pdf))
@@ -17,9 +18,8 @@ def traiter(chemin):
         champs2 = extraire_champs(lire_texte(chemin, pretraitement=est_pdf))
         if _coherent(champs2):
             champs = champs2
-    statut, anomalies = enregistrer(os.path.basename(chemin), champs)
-    return {"fichier": os.path.basename(chemin), **champs,
-            "statut": statut, "anomalies": anomalies}
+    statut, anomalies = enregistrer(nom, champs)
+    return {"fichier": nom, **champs, "statut": statut, "anomalies": anomalies}
 
 
 if __name__ == "__main__":
